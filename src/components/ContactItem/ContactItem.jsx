@@ -1,6 +1,5 @@
 import { useDeleteContactMutation } from 'redux/contacts/contactsApi';
 import PropTypes from 'prop-types';
-
 import s from './ContactItem.module.css';
 
 export default function ContactItem({ id, name, number }) {
@@ -15,6 +14,7 @@ export default function ContactItem({ id, name, number }) {
         className={s.button}
         type="submit"
         name={name}
+        disabled={isDeleting}
         onClick={() => deleteContact(id)}
       >
         {isDeleting ? 'Deleting...' : 'Delete'}

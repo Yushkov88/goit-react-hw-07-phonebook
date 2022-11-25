@@ -13,9 +13,9 @@ export default function ContactList({ filter }) {
   if (contactsFiltered) {
     return (
       <ul>
-        {contactsFiltered.map(({ id, name, number }) => (
+        {contactsFiltered.map(({ id, name, phone }) => (
           <li className={s.li} key={id}>
-            <ContactItem id={id} name={name} number={number} />
+            <ContactItem id={id} name={name} number={phone} />
           </li>
         ))}
       </ul>
