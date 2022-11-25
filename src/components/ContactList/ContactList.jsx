@@ -1,14 +1,12 @@
-import { useSelector } from 'react-redux';
-import { getContacts, getFilter } from 'redux/contacts/selectors';
 import ContactItem from 'components/ContactItem/ContactItem';
-
+import { useGetContactsQuery } from 'redux/contacts/contactsApi';
+import PropTypes from 'prop-types';
 import s from './ContactList.module.css';
 
-export default function ContactList() {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+export default function ContactList({ filter }) {
+  const { data } = useGetContactsQuery();
 
-  const contactsFiltered = contacts.filter(contact =>
+  const contactsFiltered = data?.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
@@ -24,3 +22,7 @@ export default function ContactList() {
     );
   }
 }
+
+ContactList.propTypes = {
+  filter: PropTypes.string.isRequired,
+};
